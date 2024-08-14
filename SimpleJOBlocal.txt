@@ -1,0 +1,15 @@
+il faut creer un nouveau item puis mettre le path le l'executeur python en premier C:\Users\motal\AppData\Local\Programs\Python\Python311\Python.exe (après la commande à executer)
+
+
+exemple1:
+
+C:\\Users\\motal\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m robot -d C:\Projet\Resultats -i critical_1 C:\Projet\Test\ObjectPage.robot
+
+
+
+
+
+exemple2:
+
+C:\\Users\\motal\\AppData\\Local\\Programs\\Python\\Python311\\Python.exe -m robot -d C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\Robotframework\\paruvendu\\Resultats -i critical2 C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\Robotframework\\paruvendu\\Test\\PageObject.robot
+ 

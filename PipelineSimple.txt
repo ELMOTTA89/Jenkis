@@ -1,0 +1,25 @@
+
+
+
+Exemple:
+
+pipeline { 
+    agent any
+    environment {
+        outputdirectory = "C:\\Projet\\output\\allure"
+        testdirectory = "C:\\Projet\\Test"
+        pythpath = "C:\\Users\\motal\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+    }
+    stages {
+        stage('RUN ROBOT') {
+            steps {
+                script {
+                    //je vais executer le projet 
+                    bat "${pythpath} -m robot --listener allure_robotframework --outputdir  ${outputdirectory} -i critical_1  ${testdirectory}\\ObjectPage.robot"  
+                    
+                }
+            }
+        }
+    }
+    
+}
