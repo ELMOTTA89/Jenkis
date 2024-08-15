@@ -1,0 +1,49 @@
+pipeline{
+    agent any 
+     //cron('* * * * *') // excuter chaque minute
+        environment {
+            outputdirectory= "C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\RF\\paruvendu\\output\\allure"
+            testdirectory= "C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\RF\\paruvendu\\Test"
+            pythpath= "C:\\Users\\motal\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+            allurepath= "C:\\allure-2.30.0\\bin\\allure.bat"
+            
+        }
+        stages {
+            stage ('Run test Pravendu') {
+                steps {
+                    script { 
+                         bat "${pythpath} -m robot --listener allure_robotframework --outputdir  ${outputdirectory} -i critical2  ${testdirectory}\\PageObject.robot"
+                    }
+                }
+               
+            }
+            stage('generate allure') {
+                steps {
+                    script {
+                        bat "${allurepath} generate ${outputdirectory} -o C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\RF\\paruvendu\\Resultats\\allure-report  --clean"
+                    }
+                    
+                }
+            }
+            stage ('archiver le resultat') {
+                steps {
+                    script {
+                        bat "xcopy /Y /I ${outputdirectory}\\*.* C:\\Users\\motal\\OneDrive\\Desktop\\automatisation\\RF\\paruvendu\\Resultats\\Archive\\Report\\"
+                    }
+                }
+            }
+        }
+        
+        post {
+            always {
+                echo "pipline terminé"
+            }
+            success {
+                echo "executé avec succés"
+            }
+            failure {
+                echo "execution échoué"
+            }
+        }
+    
+}
